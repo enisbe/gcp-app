@@ -9,8 +9,7 @@ client = bigquery.Client()
 from itertools import zip_longest
 
 
-quandl.ApiConfig.api_key = 'Ru9ai33t5ouuaETzyhZC'
-
+quandl.ApiConfig.api_key = 'xxxxxxxxxxxxxxxxxxxxxx'
 regions = quandl.get_table('ZILLOW/REGIONS')
  
 regions_city = regions[regions['region_type']=='city'] ['region_id'].tolist()

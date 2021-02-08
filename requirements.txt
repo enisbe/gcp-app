@@ -7,3 +7,5 @@ nbval
 click
 flask
 requests
+quandl
+google-cloud-bigquery

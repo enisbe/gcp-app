@@ -17,6 +17,12 @@ app = Flask(__name__)
 LOG = create_logger(app)
 LOG.setLevel(logging.INFO)
 
+@app.route("/")
+def home():
+    html = "<h3>Intro Page for prediction. Score model using /predict route</h3>"
+    return html.format(format)
+
+
 @app.route('/predict',methods=['POST'])
 def predict():
    # name = request.args.get("name", "World")
@@ -35,6 +41,7 @@ def predict():
 
    # json_payload =   json.loads(request.json)
    json_payload =   request.json
+   LOG.info(f"Methods reqest: %s {methods}")
 
    LOG.info(f"JSON payload: %s {type(json_payload)}")
 

@@ -22,10 +22,11 @@ import requests, base64
 
 os.getcwd()
 
-os.chdir("./gcp-app")
+# os.chdir("./gcp-app")
 
 
 url = "http://127.0.0.1:8080/predict"
+url = "https://my-project-434-301711.uc.r.appspot.com/predict"
 
 test = pd.read_csv("./test.csv")
 
@@ -34,10 +35,31 @@ x_test = test.drop(['Unnamed: 0','mv'],axis=1)
 y_test = test[['mv']]
 
 
-
+# Small Requst
 payload  =json.loads(x_test[0:10].to_json())
+r = requests.post(url, json=payload)
+r.json()
 
-r = requests.post(url,json= payload)
+#Medim Request
+payload  =json.loads(x_test.to_json())
+r = requests.post(url, json=payload)
+r.json()
+
+def request_payload(url,payload):
+    r = requests.post(url, json=payload)
+    
+
+#Medim Request
+df = pd.concat([x_test]*200)
+df = df.reset_index(drop=True)
+payload  =json.loads(df.to_json())
+
+%%time
+r = requests.post(url, json=payload)
+len(r.json()['predict'])
+
+import sys
+sys.executable
 
 r
 

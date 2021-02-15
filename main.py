@@ -41,7 +41,7 @@ def predict():
 
    # json_payload =   json.loads(request.json)
    json_payload =   request.json
-   LOG.info(f"Methods reqest: %s {methods}")
+ 
 
    LOG.info(f"JSON payload: %s {type(json_payload)}")
 

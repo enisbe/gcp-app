@@ -10,6 +10,6 @@ format:
 
 
 lint:
-	pylint --disable=R,C app.py
+	pylint --disable=R,C main.py
 
 all: install lint test

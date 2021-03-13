@@ -1,6 +1,7 @@
 pytest
 pylint
 jupyter
+jupyterlab
 pytest-cov
 pandas
 nbval
@@ -11,3 +12,5 @@ quandl
 google-cloud-bigquery
 scikit-learn==0.22.2post1
 matplotlib
+seaborn
+kaggle

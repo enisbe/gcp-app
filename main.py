@@ -28,12 +28,12 @@ def predict():
 
     json_payload =   request.json
  
-    LOG.info("JSON payload: %s " , (json_payload) )
+    LOG.info("JSON payload: sucess ")
 
     X_score = pd.DataFrame(json_payload)
     X_score.fillna(med,inplace=True)
     predicted = rfr.predict_proba(X_score )[:,1]
-
+    LOG.info("Prediction: sucess ")
     return jsonify({'predicted=1': list(predicted)})
 
 if __name__ == '__main__':

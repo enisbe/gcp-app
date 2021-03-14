@@ -18,6 +18,11 @@ def home():
     """Entry (main) route. Some functionality Explainations"""
     return render_template('main.html')
 
+@app.route("/readme")
+def readme():
+    """Entry (main) route. Some functionality Explainations"""
+    return render_template('README.html')
+
 
 @app.route('/predict',methods=['POST'])
 def predict():

@@ -19,6 +19,7 @@ file = "./data/cs-test.csv"
 top = 10
 
 payload = mlib.create_json_payload(mlib.load_test_data(file)[0:top])
+# payload = mlib.create_json_payload(mlib.load_test_data(file)[1:2])
 
 results = mlib.request_payload(url,payload)
  

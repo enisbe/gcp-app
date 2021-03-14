@@ -1,0 +1,84 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Predict 434 Main</title>
+</head>
+<body>
+ 
+ 
+
+<xmp theme="united" style="display:none;">
+
+###  Predicting the Probability of default -"GiveMeSomeCredit" from <a href='https://www.kaggle.com/c/GiveMeSomeCredit/overview'>Kaggle</a>
+    
+This application provides REST interface to predict the probabilities of defaults. It handles only POST request (GET request are not allowed) at the [/predict](predict) route 
+    
+#### Model Summary 
+ 
+* The model is based on the Kaggle competition dataset used for "GiveMeSomeCredit" competition. The competition main page is found <a href='https://www.kaggle.com/c/GiveMeSomeCredit/overview'>here</a>.
+* `etl.py` can be used to automate the ETL to extract the data and save it in the local environment.
+* Model training can be found in the `notebooks/train-credit.ipynb`.
+* I used `scikit-learn` Random Forecast Classifier with GridSearchCV method to find the best fitting model.
+* The highest rank model in the competition had a score of 0.86. My model RFC Kaggle score was 0.859.
+
+<img src="/static/images/prediction.png" alt="Test Data Prediction">  
+ 
+* The model predicts the probability of a customer (or application for a loan) defaulting over the next 2 years
+* The more precise definition of default is if a "Person experienced 90 days past due delinquency or worse." It is represented by a response variable  **`SeriousDlqin2yrs`**
+<br><br>
+    
+#### Data Dictionary 
+    
+| Variable   Name | Description | Type |
+|-|-|-|
+| SeriousDlqin2yrs | Person experienced 90   days past due delinquency or worse  | Y/N |
+| RevolvingUtilizationOfUnsecuredLines | Total   balance on credit cards and personal lines of credit except real estate and   no installment debt like car loans divided by the sum of credit limits | percentage |
+| age | Age of borrower in   years | integer |
+| NumberOfTime30-59DaysPastDueNotWorse | Number of times   borrower has been 30-59 days past due but no worse in the last 2 years. | integer |
+| DebtRatio | Monthly debt   payments, alimony,living costs divided by monthy gross income | percentage |
+| MonthlyIncome | Monthly income | real |
+| NumberOfOpenCreditLinesAndLoans | Number of Open loans   (installment like car loan or mortgage) and Lines of credit (e.g. credit   cards) | integer |
+| NumberOfTimes90DaysLate | Number of times   borrower has been 90 days or more past due. | integer |
+| NumberRealEstateLoansOrLines | Number of mortgage   and real estate loans including home equity lines of credit | integer |
+| NumberOfTime60-89DaysPastDueNotWorse | Number of times   borrower has been 60-89 days past due but no worse in the last 2 years. | integer |
+| NumberOfDependents | Number of dependents   in family excluding themselves (spouse, children etc.) | integer |
+ 
+    
+#### Requests and Responses
+
+* Request can be made byonly using POST request at the [/predict](predict) route.    
+* A sample request can look something like this using python `test-predict-app-cli-request.py  -f ./data/cs-test.csv -t 10` but any language can be used.
+    
+* The `application` **response** will be in the json format predicting the loan defaulting over the next 2 years:
+    
+```python
+{
+    "predicted=1": [
+        0.08020394910646918,
+        0.041356749003717067,
+        0.015437037693870236,
+        0.07310729402770287,
+        0.10729297692992816,
+        0.025973690929737003,
+        0.05397958700198282,
+        0.04371209879083955,
+        0.007954856044590746,
+        0.40790066865922325
+    ]
+}
+```
+
+    
+</xmp>
+
+<!--     <img src="/static/prediction.png" alt="Test Data Prediction">  -->
+ 
+ 
+ 
+ 
+</body>
+    <script src="/static/strapdown.js"></script>
+
+</html>

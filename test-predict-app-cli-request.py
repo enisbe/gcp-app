@@ -4,7 +4,7 @@ import requests
 import json
 
 url = "http://localhost:8080/predict"
-# url = "https://my-project-434-301711.uc.r.appspot.com/predict"
+url = "https://my-project-434-301711.uc.r.appspot.com/predict"
  
 """Reading arguments"""
 

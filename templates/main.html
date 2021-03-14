@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Predict 434 Main</title>
+<title>MSDS 434 - GCP Deployment</title>
 </head>
 <body>
  
@@ -11,46 +11,23 @@
 
 <xmp theme="united" style="display:none;">
 
-###  Predicting the Probability of default -"GiveMeSomeCredit"
-    
-This application will provide prediction using POST request @ /predict route.
+###  Predicting the Probability of default  -"GiveMeSomeCredit" from Kaggle
+#### with GCP App Engine Deployment    
 
-* To  get the the prediction first you need create a payload and then submit via POST request.
-    
-* The response will be in the json format predicting the loan defaulting over the next 2 years:
-```python
-{
-    "predicted=1": [
-        0.08020394910646918,
-        0.041356749003717067,
-        0.015437037693870236,
-        0.07310729402770287,
-        0.10729297692992816,
-        0.025973690929737003,
-        0.05397958700198282,
-        0.04371209879083955,
-        0.007954856044590746,
-        0.40790066865922325
-    ]
-}
-```
-* the model is based on the Kaggle competiion "GiveMeSomeCredit" that can be found   <a href='https://www.kaggle.com/c/GiveMeSomeCredit/overview'>here</a>
-
-* The model uses Random Forecast Classifier with the prediction Power 0.86 (AUC)
-
-<img src="/static/prediction.png" alt="Test Data Prediction"> 
- # this is new block for Markdown
-</xmp>
-
-<!--     <img src="/static/prediction.png" alt="Test Data Prediction">  -->
+#### Routes
  
-<div>
-    Here is a link to my git hub    <a href='https://github.com/enisbe/gcp-app/tree/test'>here</a>
-    </div>
- <xmp theme="united" style="display:none;">
-     # this is new block for Markdown
+
+    
+ 
+[http:[server_url]/readme](readme) Similar or the same information found README.md file in github repository<br> 
+[http:[server_url]/model](model) Provides some basic model information <br>
+[github.com repo](https://github.com/enisbe/gcp-app/tree/prod)   Github repository   
+  
 </xmp>
-   
+
+  
+ 
+ 
  
 </body>
     <script src="/static/strapdown.js"></script>

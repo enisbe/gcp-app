@@ -9,6 +9,7 @@
     
 * The client can be anything. The application is agnostic to the language (python/java/curl etc) as the data is served and handled using JSON data structure.  
 
+ 
 ### Set up the enviroment 
     
 #### 1. Locally

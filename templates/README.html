@@ -3,37 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Predict 434 Main</title>
+<title>MSDS 434 README - ML with GCP Deployment</title>
 </head>
 <body>
  
  
 
 <xmp theme="united" style="display:none;">
-# GCP ML application Deployment 
+# Machine Learning with GCP App Engine Deployment 
 ----
     
-###  Predicting the Probability of default -"GiveMeSomeCredit" ([Kaggle competition]('http://google.com'))
+###  Predicting the Probability of default -"GiveMeSomeCredit" from <a href='https://www.kaggle.com/c/GiveMeSomeCredit/overview'>Kaggle</a>
     
-This application provides REST API prediction app that returns the probabability of default given the customer credit charterticis. 
+* The application provides REST API prediction app that returns the probability of default given the customer credit attributes. 
+    
+* Currently the only enabled route that returns the predictions is  @/predict and only POST requests are allowed to the client.
+    
+* The client can be anything. The application is agnostic to the language (python/java/curl etc) as the data is served and handled using JSON data structure.  
 
-Current the only enabled route is  @/predict and the only POST request are served to the client
-    
-The client can be anything  The application is agnostic to the languest (python/java/curl etc) as the data is served and handled using json data structure  
-    
-## Testing the application
+### Set up the enviroment 
     
 #### 1. Locally
     
-To start using the app the following procedure should be taked:
-    
+**Recommeded:** To replicate the enviroment it is recommneded that  python virtual is created and sourced:     
  
 ```bash 
 $ python3 -m venv ~/.gcp-app
 $ source ~/.gcp-app/bin/activate
 ```
     
-After getting virtualenv set up download the data and test it locally
+After getting virtual enviroment set up download the data and test it locally:
 
 ```bash
 $ cd ~
@@ -43,7 +42,7 @@ $ git checkout test
 $ make install
 ```
 
-and start the app locally
+Start the app locally:
     
 ```bash
 python main.py
@@ -58,11 +57,11 @@ python main.py
  * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
 ```
     
-Main route [http://localhost:8080/](http://localhost:8080) provides the basic information about the model 
+Main route [http://[server]/model](model) provides the basic information about the model.
     
 #### 2. Deploy in GCP app-engine
     
-Application can be deployed in Google Cloud using App Engine. In googleshell clone the directory from github and switch to prod (or test) branch:
+The application can be deployed in Google Cloud using App Engine. In googleshell, start by cloning  the directory from the github and switch to prod (or test) branch:
 
 ```bash
 $ git clone https://github.com/enisbe/gcp-app.git
@@ -73,20 +72,20 @@ $ gcloud app deploy app.yaml  --project [project name]
 
 ```
      
-## Interaction with the application and making requests
+## Interaction with the application and make requests
 
-There are many way that a client can make request:
+There are many ways that a client can make a request against the app:
     
-1. ***Using python CLI*** (or any other languence) locally or remotely
-2. ***Usuing Ipython*** or some other interactive shell 
-3. ***Using curl*** or some other tool like curl (what is CURL?)
+1. **Using python CLI** (or any other language) locally or remotely
+2. **Using Ipython** or some other interactive shell 
+3. **Using curl** or some other tool like curl 
 
     
 #### 1. Using Python CLI
     
-Making requestion in local or remote enviroment is the same using python terminal. The only diffrence is where the request is routed. For testing locally open file `test-predict-app-cli-request.py` and uncomment `url = "http://localhost:8080/predict"` code line. For making requestion to the gcp app uncomment `url = "https://my-project-434-301711.uc.r.appspot.com/predict"`
+Making requests in a local or remote environment is the same as using Python in a terminal. The only difference is where the request is routed. For testing locally open file `test-predict-app-cli-request.py` and uncomment `url = "http://localhost:8080/predict"` code line. For making requests to the GCP App Engine uncomment `url = "https://my-project-434-301711.uc.r.appspot.com/predict"`
     
-Then the request can be python via python cli. If we are requesting from localhost then the command and response will look as follows: 
+Then the request can be sent Python via python cli. If we are requesting from localhost then the command and response will look as follows:  
 
 ```bash
 $ python test-predict-app-cli-request.py  -f ./data/cs-test.csv -t 10
@@ -113,7 +112,7 @@ Reading from file:  ./data/cs-test.csv
     ]
 }
 ```
-Sending the request to GCP app-engine using the same command:
+Sending the request to GCP App Engine using the same command:
     
 ``` bash
 $ python test-predict-app-cli-request.py  -f ./data/cs-test.csv -t 10
@@ -145,12 +144,12 @@ Reading from file:  ./data/cs-test.csv
     ]
 }
 ```    
-**-f** argument indicates the file name<br>
-**-t** aragument indicates how many rows to evaluate (all or any string would sned all rows to the server for scoring)
+**-f** argument indicates the file name where the is coming from<br>
+**-t** argument indicates how many rows to evaluate (all or any string would send all rows to the server for scoring)
 
 #### 2. Using Interactive Python
     
-Using Inteative Python is straing forward. The code to test application and make request is found in `test-predict-app-kernel.py`
+Using Interactive Python is straightforward. The code to test application and make requests is found in `test-predict-app-kernel.py`
 
 ```Python 
 """This code can be run in interactive shell"""
@@ -190,12 +189,10 @@ $ ./curl-request.sh
  
 ```
 
-### Model
+#### Model Summary
     
 * The model is based on the Kaggle competiion dataset used for "GiveMeSomeCredit" competition. The competition main page is found here <a href='https://www.kaggle.com/c/GiveMeSomeCredit/overview'>here</a>.
-* `etl.py` can be used to automate the etl to extract the data and save in the local enviroment 
-* Model training can be found in the `notebooks/train-credit.ipynb` 
-* I used `scikit-learn` Random Forecast Classifier with GridSearchCV method to find the best fitting model
+* This is a `scikit-learn` Random Forecast Classifier with GridSearchCV method to find the best fitting model
 * The highst rank model in the competition had a score of 0.86. My model RFC Kaggle score was 0.859    
 
 Test and Train AUC curves and results:
@@ -203,20 +200,51 @@ Test and Train AUC curves and results:
 <img src="/static/images/prediction.png" alt="Test Data Prediction"> 
 
     
-## Application Pipeline and Architecture
+### Application Pipeline and Architecture
 
-* This application deploys the Machine Learning in the Google Cloud enviorment and provides REST API interface that client can interact with it. The use case for such application is a model problem that potential has a broad user group that want to laverge the ML model application.  
+* This application deploys the Machine Learning in the Google Cloud environment and provides REST API interface that the client application can interact with. The use case for such an application is a model problem that potentially has a broad user group that wants to leverage the ML model application.  
     
-* The application is built in Python using Flask web framework and it was deployed in GCP app engine. `Github actions` For Continous Integration (CI). For contieous deployment (CD) a trigger in GCP was created to track the `prod` in Github. On any change in the prod branch GCP app-engine redeploy the application. 
+* The application is built in Python using Flask web framework and it was deployed in GCP app engine. `Github actions` is used for Continous Integration (CI). For continuous deployment (CD) a trigger in GCP was created to track the `prod` in Github. On any change in the prod branch GCP app-engine redeploy the application. 
 
     
-* The applicaiton was developed and tested locally. After sucessful testing the pushing to `test` branch repo where CI was used with linting and testing was used to ensure the application integration. Ooptionally, for senstivite projects, a CD with another app-engine can be deployed to respond to any change in `test`. For this application this was applied. After successul CI integration, `test` branch is merged with `prod` which is redoployed via GCP CD trigger. 
+* The application was developed and tested locally. After successful testing, the code changes are pushed to `test` branch repo where `github actions` was used for CI for linting and testing the code. Optionally, for applications for downtime, a CD with another app-engine can be deployed to respond to any change in `test` branch. For this application, this was not used. After successful CI integration, the `test` branch is merged with `prod` which is redeployed via GCP CD trigger. 
 
-The ML app pipeline is shown blow: 
+The ML app pipeline is shown below:  
 
 <img src="/static/images/application-pipeline-medium.png" alt="Application Pipeline"> 
 
     
+### Monitoring 
+    
+Download AppachBench utility tools and make requests on /predict route:
+    
+```bash 
+$ sudo apt-get install apache2-utils
+$ ab -p one_request.json -T application/json -c 100 -n 1000  https://my-project-434-301711.uc.r.appspot.com/predict
+```
+    
+### Assets and Routes  
+
+**Routes:** 
+    
+[model](model) information<br>
+[README](readme) information<br>
+[predict](predict) handles POST requests. GET requests are disables
+
+ 
+[github repo](https://github.com/enisbe/gcp-app/tree/prod) prod branch in the repository<br>
+ 
+**Important assets:**
+    
+`etl.py` - Automate extract data from Kaggle 
+`main.py` - Flask App
+`mlib.py` - helper module
+`data/credit-train.ipynb` - training the model
+`test-predict-app-cli-request.py` - test cli
+`test-predict-app-kernel.py` - test in the kernel
+`testing.py` - test for pytest
+`curl-request.sh` - curl request
+`makefile` - enviroment setup  
 </xmp>
 
  

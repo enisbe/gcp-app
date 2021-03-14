@@ -13,10 +13,16 @@ app = Flask(__name__)
 LOG = create_logger(app)
 LOG.setLevel(logging.INFO)
 
+
 @app.route("/")
 def home():
     """Entry (main) route. Some functionality Explainations"""
     return render_template('main.html')
+
+@app.route("/model")
+def model():
+    """Entry (main) route. Some functionality Explainations"""
+    return render_template('model.html')
 
 @app.route("/readme")
 def readme():

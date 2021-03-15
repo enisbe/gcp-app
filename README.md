@@ -9,7 +9,8 @@
     
 * The client can be anything. The application is agnostic to the language (python/java/curl etc) as the data is served and handled using JSON data structure.  
 
- 
+[https://my-project-434-301711.uc.r.appspot.com](https://my-project-434-301711.uc.r.appspot.com)
+    
 ### Set up the enviroment 
     
 #### 1. Locally
@@ -215,10 +216,11 @@ $ ab -p one_request.json -T application/json -c 100 -n 1000  https://my-project-
 ### Assets and Routes  
 
 **Routes:** 
-    
-[model](model) information<br>
-[README](readme) information<br>
-[predict](predict) handles POST requests. GET requests are disables
+
+[/]() main<br>
+[/model](model) information<br>
+[/readme](readme) information<br>
+[/predict](predict) handles POST requests. GET requests are disables
 
  
 [github repo](https://github.com/enisbe/gcp-app/tree/prod) prod branch in the repository<br>
